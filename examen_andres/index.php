@@ -43,6 +43,22 @@
         <form method="post" action="index.php">
             <input type="text" name="letra" maxlength="1" class="c2" placeholder="letra" />
             <button type="submit" class="b1">Buscar</button>
+            <?php
+            //checamos si se ha enviado un querystring a la página o el formulario con una búsqueda
+            if (isset($_REQUEST["letra"])) {
+                $letraParaBuscar = $_REQUEST["letra"];
+
+                //buscamos los apellidos que inician con la letra seleccionada
+                $sql = "select idDirectorio, nombre, apellido, email from andres_directorio where apellido like '" . $letraParaBuscar . "%' order by apellido";
+                $rs = ejecutar($sql);
+            } else if (isset($_POST["busqueda"])) {
+                $registroParaBuscar = $_POST["busqueda"];
+
+                $sql = "select idDirectorio, nombre, apellido, email from andres_directorio where apellido like '%" . $registroParaBuscar . "%' order by apellido";
+                $rs = ejecutar($sql);
+            }
+            ?>
+
         </form>
         <br><br>
         <?php

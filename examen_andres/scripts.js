@@ -15,7 +15,7 @@ function validarTelefono3() {
     var flagNumCaracteres = false;
     var flagNumber = false;
     var n = telefono.length;
-    if (n < 10) {
+    if (n < 9) {
         flagNumCaracteres = true;
         mensaje.push("El teléfono debe tener exactamente 10 números");
     }
